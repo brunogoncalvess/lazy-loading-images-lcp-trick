@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A page about learning lazy loading">
+  <title>Currents Cat Page</title>
+  <style>
+    .image-container img {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>currents cat</h1>
+
+  <div class="image-container">
+    <img src="./First-Wallpapper.avif" alt="imagem">
+  </div>
+   
+  <script>
+    const imgContainer = document.querySelector('.image-container')
+    const img = new Image()
+    const oldImage = document.querySelector("img")
+
+    window.addEventListener('load', e => {
+      imgContainer.classList.add("loaded")
+      img.src = "./First-Wallpapper.png"
+      img.alt = "imagem"
+
+      img.onload = ()=>{
+        oldImage.style.display = "none"
+        imgContainer.appendChild(img)
+      }
+
+    })
+  </script>
+
+</body>
+</html>

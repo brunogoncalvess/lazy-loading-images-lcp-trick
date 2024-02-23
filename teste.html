@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currents Cat Page</title>
+  <style>
+    .image-container img {
+      max-width: 100%;
+    }
+    body {
+      position: relative;
+      height: 100%;
+    }
+    /* body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: #FFF;
+    }
+    body::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      content: url("./cat\ in\ currents.png");
+    }
+
+    body.loaded::after, body.loaded::before {
+      display: none;
+    } */
+  </style>
+</head>
+<body>
+  <h1>currents cat</h1>
+
+  <div class="image-container" id="lazy-image-container">
+    <!-- Placeholder for the image -->
+    <div id="image-placeholder"></div>
+  </div>
+   
+  <script>
+    // setTimeout(() => {
+    //   const body = document.querySelector("body")
+    //   body.classList.add("loaded")
+    // }, 600)
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // Intersection Observer to lazy load the image
+      const lazyImageContainer = document.getElementById('lazy-image-container');
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Load the image when it comes into view
+            const img = new Image();
+            img.src = "./First-Wallpapper.png";
+            img.onload = () => {
+              document.getElementById('image-placeholder').appendChild(img);
+              observer.unobserve(lazyImageContainer);
+            };
+            console.log("entry::", entry)
+          }
+        });
+      });
+      observer.observe(lazyImageContainer);
+    });
+  </script>
+</body>
+</html>
